@@ -20,18 +20,17 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         launch { longRunningWork("SampleCoRoutine",1000) }
     }
 
-    suspend fun longRunningWork(coroutineName: String, delay: Long) {
-        Log.i(TAG,"$coroutineName thread started")
-        Log.i(TAG,"Thread name: ${Thread.currentThread().name} Thread id: ${Thread.currentThread().id} in ${coroutineName}")
-        for( i in 0..9){
-            Log.i(TAG,"Remaining time left for ${Thread.currentThread().name}:${10 - i} in $coroutineName")
-            delay(delay)
-        }
-        Log.i(TAG,"$coroutineName thread ended")
-    }
-
     companion object{
         val TAG: String = "CoRoutine"
     }
 }
 
+suspend fun longRunningWork(coroutineName: String, delay: Long) {
+    Log.i(MainActivity.TAG,"$coroutineName thread started")
+    Log.i(MainActivity.TAG,"Thread name: ${Thread.currentThread().name} Thread id: ${Thread.currentThread().id} in ${coroutineName}")
+    for( i in 0..9){
+        Log.i(MainActivity.TAG,"Remaining time left for ${Thread.currentThread().name}:${10 - i} in $coroutineName")
+        delay(delay)
+    }
+    Log.i(MainActivity.TAG,"$coroutineName thread ended")
+}

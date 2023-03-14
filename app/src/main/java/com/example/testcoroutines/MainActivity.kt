@@ -16,8 +16,9 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        Log.i(MainActivity.TAG,"Main Activity thread started")
         launch { longRunningWork("SampleCoRoutine",1000) }
+        Log.i(MainActivity.TAG,"Main Activity thread ended")
     }
 
     companion object{

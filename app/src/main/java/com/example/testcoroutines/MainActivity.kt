@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
 
 fun longRunningWork(coroutineName: String, delay: Long) {
     Log.i(MainActivity.TAG,"$coroutineName thread started")
-    Log.i(MainActivity.TAG,"Thread name: ${Thread.currentThread().name} Thread id: ${Thread.currentThread().id} in ${coroutineName}")
     for( i in 0..9){
         Handler(Looper.getMainLooper()).postDelayed(Runnable {
             try{

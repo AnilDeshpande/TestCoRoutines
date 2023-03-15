@@ -28,10 +28,6 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
 
 suspend fun longRunningWork(coroutineName: String, delay: Long) {
     Log.i(MainActivity.TAG,"$coroutineName thread started")
-    Log.i(MainActivity.TAG,"Thread name: ${Thread.currentThread().name} Thread id: ${Thread.currentThread().id} in ${coroutineName}")
-    for( i in 0..9){
-        Log.i(MainActivity.TAG,"Remaining time left for ${Thread.currentThread().name}:${10 - i} in $coroutineName")
-        delay(delay)
-    }
+    delay(delay);
     Log.i(MainActivity.TAG,"$coroutineName thread ended")
 }

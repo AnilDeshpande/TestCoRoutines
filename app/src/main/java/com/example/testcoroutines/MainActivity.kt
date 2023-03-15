@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
     private var job: Job = Job()
 
     override val coroutineContext: CoroutineContext
-        get() = Dispatchers.IO + job
+        get() = Dispatchers.Main + job
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +30,7 @@ suspend fun longRunningWork(coroutineName: String, delay: Long) {
     Log.i(MainActivity.TAG,"$coroutineName thread started")
     for(i in 1..9){
         delay(delay);
-        Log.i(MainActivity.TAG,"$coroutineName is progress, remaining time is ${10-i}")
+        Log.i(MainActivity.TAG,"$coroutineName is progress, remaining time is ${10-i}, ${Thread.currentThread().name}")
     }
 
     Log.i(MainActivity.TAG,"$coroutineName thread ended")

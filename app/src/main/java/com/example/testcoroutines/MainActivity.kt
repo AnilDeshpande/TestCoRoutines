@@ -28,9 +28,13 @@ fun longRunningWork(coroutineName: String, delay: Long) {
     Log.i(MainActivity.TAG,"Thread name: ${Thread.currentThread().name} Thread id: ${Thread.currentThread().id} in ${coroutineName}")
     for( i in 0..9){
         Handler(Looper.getMainLooper()).postDelayed(Runnable {
-            Log.i(MainActivity.TAG,"Remaining time left for ${Thread.currentThread().name}:${10 - i} in $coroutineName")
-        }, delay)
-
+            try{
+                Thread.sleep(delay)
+                Log.i(MainActivity.TAG,"$coroutineName is progress, remaining time is ${10-i}")
+            }catch (ex: Exception){
+                Log.i(MainActivity.TAG," ${ex?.message}")
+            }
+        }, 0)
     }
     Log.i(MainActivity.TAG,"$coroutineName thread ended")
 }
